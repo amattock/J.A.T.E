@@ -11,21 +11,23 @@ module.exports = () => {
     mode: 'development',
     entry: {
       main: './src/js/index.js',
-      install: './src/js/install.js'
-    },
+      install: './src/js/install.js',
+      database: './src/js/database.js',
+      editor: './src/js/editor.js',
+      header: './src/js/header.js',
+        },
     output: {
       filename: '[name].bundle.js',
       path: path.resolve(__dirname, 'dist'),
     },
     plugins: [
       new HtmlWebpackPlugin({
-        template: './src/index.html',
-        filename: 'index.html',
-        chunks: ['main']
+        template: './index.html',
+        title: 'JATE',
       }),
       new WebpackPwaManifest({
         name: 'Just another text editior',
-        short_name: 'J.A.T.E.',
+        short_name: 'JATE',
         description: 'Just another text editor',
         background_color: '#ffffff',
         crossorigin: 'use-credentials', //can be null, use-credentials or anonymous
@@ -47,7 +49,7 @@ module.exports = () => {
       }),
       new InjectManifest({
         swSrc: './src-sw.js',
-        swDest: 'sw.js',
+        swDest: 'src-sw.js',
         exclude: [/\.map$/, /manifest$/, /_redirects/],
       }),
       
